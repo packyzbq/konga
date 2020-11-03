@@ -2,19 +2,20 @@ language: node_js
 
 arch:
   - arm64
-
-node_js:
-  - "12.16.3"
-
-services:
-  - mysql
-
-scripts:
-- docker login -u $ACS_USERNAME -p $ACS_PASSWORD registry.cn-hangzhou.aliyuncs.com
-- docker build . -f Dockerfile.aarch64 -t registry.cn-hangzhou.aliyuncs.com/packyzbq/konga:0.14.9-arm64
-- docker push registry.cn-hangzhou.aliyuncs.com/packyzbq/konga:0.14.9-arm64
 # whitelisted branches
 branches:
   only:
     - master
     - next
+node_js:
+  - "12.16.3"
+cache:
+  npm: true
+services:
+  - mysql
+  - docker
+
+scripts:
+- docker build . -f Dockerfile.aarch64 -t registry.cn-hangzhou.aliyuncs.com/packyzbq/konga:0.14.9-arm64
+- docker login -u $ACS_USERNAME -p $ACS_PASSWORD registry.cn-hangzhou.aliyuncs.com & docker push registry.cn-hangzhou.aliyuncs.com/packyzbq/konga:0.14.9-arm64
+
