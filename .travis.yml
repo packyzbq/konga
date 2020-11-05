@@ -16,7 +16,7 @@ services:
   - docker
 
 scripts:
-- docker build . -f Dockerfile.aarch64 -t registry.cn-hangzhou.aliyuncs.com/packyzbq/konga:0.14.9-arm64
-- docker login -u $ACS_USERNAME -p $ACS_PASSWORD registry.cn-hangzhou.aliyuncs.com 
-- docker push registry.cn-hangzhou.aliyuncs.com/packyzbq/konga:0.14.9-arm64
+- docker build . -f Dockerfile.aarch64 -t packyzbq/konga:0.14.9-arm64
+- docker login -u $ACS_USERNAME -p $ACS_PASSWORD
+- docker push packyzbq/konga:0.14.9-arm64
 
